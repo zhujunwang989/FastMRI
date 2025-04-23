@@ -26,7 +26,7 @@ ENV/
 env/
 fastMRI_project/
 
-# Data (excluding model files)
+# Data and Models
 Data/
 data/
 *.h5
@@ -34,6 +34,14 @@ data/
 *.npy
 *.npz
 *.pkl
+*.pt
+*.pth
+*.ckpt
+*.model
+saved_models/
+checkpoints/
+weights/
+runs/
 
 # IDE
 .idea/
