@@ -50,4 +50,30 @@ def ssim(img1, img2, window_size=11, window=None, size_average=True):
     if size_average:
         return ssim_map.mean()
     else:
-        return ssim_map.mean(1).mean(1).mean(1) 
+        return ssim_map.mean(1).mean(1).mean(1)
+
+def calculate_metrics(pred, target):
+    """
+    Calculate all evaluation metrics.
+    
+    Args:
+        pred: Model predictions
+        target: Ground truth
+        
+    Returns:
+        Dictionary of metrics
+    """
+    # Calculate MSE
+    mse_value = mse(pred, target)
+    
+    # Calculate PSNR
+    psnr = 10 * torch.log10(1.0 / mse_value)
+    
+    # Calculate SSIM
+    ssim_value = ssim(pred, target)
+    
+    return {
+        'mse': mse_value.item(),
+        'psnr': psnr.item(),
+        'ssim': ssim_value.item()
+    } 
